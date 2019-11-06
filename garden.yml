@@ -1,0 +1,24 @@
+kind: Project
+name: jelastic-kubernetes-garden-openfaas
+environments:
+  - name: remote
+providers:
+  - name: kubernetes
+    environments: [remote]
+    # kubectl context name that points to the jelastic host
+    context: jelastic
+    namespace: jelastic-kubernetes-garden-openfaas
+    # hostname of your jelastic kubernetes environment
+    defaultHostname: jelastic-kubernetes-garden-openfaas.fr-1.paas.massivegrid.net
+    buildMode: kaniko
+    # we need to define the specific jelastic volum eanagement driver here
+    storage:
+      builder:
+        storageClass: jelastic-dynamic-volume
+      nfs:
+        storageClass: jelastic-dynamic-volume
+      registry:
+        storageClass: jelastic-dynamic-volume
+      sync:
+        storageClass: jelastic-dynamic-volume
+  - name: openfaas

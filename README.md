@@ -18,7 +18,9 @@ export JELASTIC_K8S_URL="example.jelastic.com/api"
 export JELASTIC_K8S_TOKEN="examplelscbkshft486tro8723yiyfgy4token"
 ```
 
-3. Run ```./deploy.sh```
+3. change the ```defaultHostname: jelastic-kubernetes-garden-openfaas.fr-1.paas.massivegrid.net``` value in garden.yml to the URL set in step 2. (TODO: use string template referencing the env var)
+
+4. Run ```./deploy.sh```
 
 This will:
 
@@ -28,7 +30,7 @@ This will:
 - let Garden configure the cluster
 - let Garden _try_ to deploy the example app, but fail
 
-4. We should be able to run ```garden call hello-container/hello```, but we won't get there.
+5. We should be able to run ```garden call hello-container/hello```, but we won't get there.
 
 ## Debugging the 'Error: forwarding ports: Upgrade request failed' error
 

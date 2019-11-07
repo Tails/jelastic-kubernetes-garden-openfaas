@@ -20,7 +20,7 @@ export JELASTIC_K8S_TOKEN="examplelscbkshft486tro8723yiyfgy4token"
 
 3. change the ```defaultHostname: jelastic-kubernetes-garden-openfaas.fr-1.paas.massivegrid.net``` value in garden.yml to the URL set in step 2. (TODO: use string template referencing the env var)
 
-4. Run ```./deploy.sh```
+4. Run ```JELASTIC_K8S_URL=$JELASTIC_K8S_URL JELASTIC_K8S_TOKEN=$JELASTIC_K8S_TOKEN ./deploy.sh```
 
 This will:
 

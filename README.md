@@ -34,7 +34,13 @@ This will:
 
 ## Debugging the 'Error: forwarding ports: Upgrade request failed' error
 
-Run ```garden deploy --log-level=silly``` to see the raw HTTP calls done to the Jelastic Kubernetes cluster that fail. Note that this failing API call seems to bypass the Ingress. I've tried this setup with all the three types of Ingresses supported by Jelastic, but it made no difference since the problem call goes straight for the API.
+Run ```garden deploy --log-level=silly``` to see the Garden.io operations tried on the Jelastic Kubernetes cluster that fail.
+
+To see the raw HTTP POST request that fails:
+``` bash
+.garden/tools/kubectl/b57d7033ebdf2a5a/kubectl -v=10 --context=jelastic --namespace=garden-system port-forward Deployment/garden-docker-registry 56235:5000
+```
+ Note that this failing API call seems to bypass the Ingress. I've tried this setup with all the three types of Ingresses supported by Jelastic, but it made no difference since the problem call goes straight for the API.
 
 ``` bash
 # error
@@ -45,10 +51,4 @@ Could not query in-cluster registry: Error: Port forward exited with code 1 befo
 error: error upgrading connection: Upgrade request required
 ```
 
-After running:
-
-``` bash
-.garden/tools/kubectl/b57d7033ebdf2a5a/kubectl --context=jelastic --namespace=garden-system port-forward Deployment/garden-docker-registry 56235:5000
-```
-
-## TODO: how to show Kubernetes logs for this API request?
+## TODO: how to show Kubernetes server logs for this API request?
